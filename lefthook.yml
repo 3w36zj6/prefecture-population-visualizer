@@ -1,0 +1,23 @@
+# EXAMPLE USAGE:
+#
+#   Refer for explanation to following link:
+#   https://github.com/evilmartians/lefthook/blob/master/docs/configuration.md
+#
+
+pre-commit:
+  parallel: true
+  commands:
+    prettier:
+      glob: "*"
+      run: bun prettier {staged_files} --write
+      stage_fixed: true
+      skip:
+        - merge
+        - rebase
+    eslint:
+      glob: "*.{ts,tsx}"
+      run: bun eslint {staged_files} --fix
+      stage_fixed: true
+      skip:
+        - merge
+        - rebase
