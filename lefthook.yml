@@ -8,7 +8,7 @@ pre-commit:
   parallel: true
   commands:
     prettier:
-      glob: "*"
+      glob: "*.{js,ts,json,cjs,jsx,tsx,md,yml,yaml,toml,html,css}"
       run: bun prettier {staged_files} --write
       stage_fixed: true
       skip:
