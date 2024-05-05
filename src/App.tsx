@@ -22,6 +22,7 @@ const App = () => {
       <section>
         <PrefectureCheckBoxGroup
           onSelectedPrefecturesChange={(items) => {
+            // eslint-disable-next-line no-console -- 動作確認用の一時的な実装
             console.log(items);
           }}
         />
