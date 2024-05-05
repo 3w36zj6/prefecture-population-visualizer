@@ -15,7 +15,7 @@ describe("PopulationController", () => {
   let controller: PopulationController;
   let mockGetPopulationCompositionPerYear: Mock<
     (
-      prefCode: string,
+      prefCode: number,
       cityCode?: string,
     ) => Promise<PopulationCompositionPerYear>
   >;
@@ -41,7 +41,7 @@ describe("PopulationController", () => {
 
   test("人口構成の取得", async () => {
     const result = await controller.getPopulationCompositionPerYear(
-      "11",
+      11,
       "11362",
     );
 
@@ -54,7 +54,7 @@ describe("PopulationController", () => {
     });
     expect(mockGetPopulationCompositionPerYear).toHaveBeenCalledTimes(1);
     expect(mockGetPopulationCompositionPerYear).toHaveBeenCalledWith(
-      "11",
+      11,
       "11362",
     );
   });

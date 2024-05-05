@@ -73,7 +73,7 @@ describe("PopulationRepositoryImpl", () => {
 
   test("人口構成の取得", async () => {
     const result = await repository.getPopulationCompositionPerYear(
-      "11",
+      11,
       "11362",
     );
     expect(mockFetchResasAPI).toHaveBeenCalledTimes(1);

@@ -7,7 +7,7 @@ describe("PopulationUseCase", () => {
   let mockRepository: {
     getPopulationCompositionPerYear: Mock<
       (
-        prefCode: string,
+        prefCode: number,
         cityCode?: string,
       ) => Promise<PopulationCompositionPerYear>
     >;
@@ -29,7 +29,7 @@ describe("PopulationUseCase", () => {
       elderlyPopulation: [{ year: 1980, value: 1550, rate: 12.09 }],
     });
 
-    const result = await useCase.getPopulationCompositionPerYear("11", "11362");
+    const result = await useCase.getPopulationCompositionPerYear(11, "11362");
 
     expect(result).toStrictEqual({
       boundaryYear: 2020,
@@ -43,7 +43,7 @@ describe("PopulationUseCase", () => {
       mockRepository.getPopulationCompositionPerYear,
     ).toHaveBeenCalledTimes(1);
     expect(mockRepository.getPopulationCompositionPerYear).toHaveBeenCalledWith(
-      "11",
+      11,
       "11362",
     );
   });

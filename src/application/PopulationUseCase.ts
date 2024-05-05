@@ -5,7 +5,7 @@ export class PopulationUseCase {
   constructor(private populationRepository: PopulationRepository) {}
 
   async getPopulationCompositionPerYear(
-    prefCode: string,
+    prefCode: number,
     cityCode?: string,
   ): Promise<PopulationCompositionPerYear> {
     return this.populationRepository.getPopulationCompositionPerYear(
