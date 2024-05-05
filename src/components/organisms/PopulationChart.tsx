@@ -36,6 +36,7 @@ export const PopulationChart: React.FC<PopulationChartProps> = ({
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
+          {/* NOTE: https://github.com/recharts/recharts/issues/3615 にある通りWarningが発生する */}
           <XAxis dataKey="year" />
           <YAxis />
           {populationPlotPoints.length > 0 &&
