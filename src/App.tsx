@@ -1,11 +1,21 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import "./App.css";
 import reactLogo from "./assets/react.svg";
+import {
+  PopulationChart,
+  PopulationChartProps,
+  PopulationPlotPoint,
+} from "./components/organisms/PopulationChart";
 import { PrefectureCheckBoxGroup } from "./components/organisms/PrefectureCheckBoxGroup";
+import { PopulationCompositionPerYearValue } from "./domain/models/Population";
+import { PopulationController } from "./interface/PopulationController";
 import viteLogo from "/vite.svg";
 
 const App = () => {
   const [count, setCount] = useState(0);
+  const [populationChartProps, setPopulationChartProps] = useState<
+    PopulationChartProps | undefined
+  >(undefined);
 
   return (
     <>
@@ -18,14 +28,57 @@ const App = () => {
         </a>
       </div>
       <h1>Vite + React</h1>
-      {/* WIP */}
       <section>
         <PrefectureCheckBoxGroup
-          onSelectedPrefecturesChange={(items) => {
-            // eslint-disable-next-line no-console -- 動作確認用の一時的な実装
-            console.log(items);
-          }}
+          onSelectedPrefecturesChange={useCallback(async (prefectures) => {
+            const populationController = new PopulationController();
+            const populationCompositionPerYearList: {
+              prefName: string;
+              populationCompositionPerYear: PopulationCompositionPerYearValue[];
+            }[] = [];
+
+            for (const prefecture of prefectures) {
+              const population =
+                await populationController.getPopulationCompositionPerYear(
+                  prefecture.prefCode,
+                );
+              populationCompositionPerYearList.push({
+                prefName: prefecture.prefName,
+                populationCompositionPerYear: population.totalPopulation,
+              });
+            }
+
+            if (populationCompositionPerYearList.length === 0) {
+              return;
+            }
+
+            const populationPlotPoints: PopulationPlotPoint[] = [];
+
+            for (const index of Array(
+              populationCompositionPerYearList[0].populationCompositionPerYear
+                .length,
+            ).keys()) {
+              const populationPlotPoint: PopulationPlotPoint = {
+                year: populationCompositionPerYearList[0]
+                  .populationCompositionPerYear[index].year,
+              };
+              for (const {
+                prefName,
+                populationCompositionPerYear,
+              } of populationCompositionPerYearList) {
+                populationPlotPoint[prefName] =
+                  populationCompositionPerYear[index].value;
+              }
+              populationPlotPoints.push(populationPlotPoint);
+            }
+            setPopulationChartProps({
+              populationPlotPoints,
+            });
+          }, [])}
         />
+      </section>
+      <section>
+        {populationChartProps && <PopulationChart {...populationChartProps} />}
       </section>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
