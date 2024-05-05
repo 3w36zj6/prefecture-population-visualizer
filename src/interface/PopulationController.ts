@@ -10,7 +10,7 @@ export class PopulationController {
     );
   }
   async getPopulationCompositionPerYear(
-    prefCode: string,
+    prefCode: number,
     cityCode?: string,
   ): Promise<PopulationCompositionPerYear> {
     return await this.populationUseCase.getPopulationCompositionPerYear(

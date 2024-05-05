@@ -16,7 +16,7 @@ type PopulationCompositionPerYearAPIResponse = {
 
 export class PopulationRepositoryImpl implements PopulationRepository {
   async getPopulationCompositionPerYear(
-    prefCode: string,
+    prefCode: number,
     cityCode: string = "-",
   ): Promise<PopulationCompositionPerYear> {
     const apiResponse: PopulationCompositionPerYearAPIResponse =
