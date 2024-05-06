@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   CartesianGrid,
   Legend,
@@ -9,10 +9,15 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { PopulationCategory } from "../../domain/models/Population";
 import { stringToRgbHex } from "../../helpers/stringToRgbHex";
 
 export interface PopulationChartProps {
-  populationPlotPoints: PopulationPlotPoint[];
+  selectedCategory: PopulationCategory;
+  totalPopulationPlotPoints: PopulationPlotPoint[];
+  youngPopulationPlotPoints: PopulationPlotPoint[];
+  productiveAgePopulationPlotPoints: PopulationPlotPoint[];
+  elderlyPopulationPlotPoints: PopulationPlotPoint[];
 }
 
 export interface PopulationPlotPoint {
@@ -21,8 +26,32 @@ export interface PopulationPlotPoint {
 }
 
 export const PopulationChart: React.FC<PopulationChartProps> = ({
-  populationPlotPoints,
+  selectedCategory,
+  totalPopulationPlotPoints,
+  youngPopulationPlotPoints,
+  productiveAgePopulationPlotPoints,
+  elderlyPopulationPlotPoints,
 }) => {
+  const [populationPlotPoints, setPopulationPlotPoints] = useState<
+    PopulationPlotPoint[]
+  >([]);
+  useEffect(() => {
+    setPopulationPlotPoints(
+      {
+        総人口: totalPopulationPlotPoints,
+        年少人口: youngPopulationPlotPoints,
+        生産年齢人口: productiveAgePopulationPlotPoints,
+        老年人口: elderlyPopulationPlotPoints,
+      }[selectedCategory],
+    );
+  }, [
+    selectedCategory,
+    totalPopulationPlotPoints,
+    youngPopulationPlotPoints,
+    productiveAgePopulationPlotPoints,
+    elderlyPopulationPlotPoints,
+  ]);
+
   return (
     <div style={{ height: "50vw" }}>
       <ResponsiveContainer>
