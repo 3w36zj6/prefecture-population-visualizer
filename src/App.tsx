@@ -1,9 +1,9 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import "./App.css";
 import reactLogo from "./assets/react.svg";
+import PopulationCategoryRadioButtonGroup from "./components/organisms/PopulationCategoryRadioButtonGroup";
 import {
   PopulationChart,
-  PopulationChartProps,
   PopulationPlotPoint,
 } from "./components/organisms/PopulationChart";
 import { PrefectureCheckBoxGroup } from "./components/organisms/PrefectureCheckBoxGroup";
@@ -11,11 +11,31 @@ import { PopulationCompositionPerYearValue } from "./domain/models/Population";
 import { PopulationController } from "./interface/PopulationController";
 import viteLogo from "/vite.svg";
 
+import { PopulationCategory } from "./domain/models/Population";
+
+interface CategoryPopulationPlotPoints {
+  totalPopulationPlotPoints: PopulationPlotPoint[];
+  youngPopulationPlotPoints: PopulationPlotPoint[];
+  productiveAgePopulationPlotPoints: PopulationPlotPoint[];
+  elderlyPopulationPlotPoints: PopulationPlotPoint[];
+}
+
 const App = () => {
   const [count, setCount] = useState(0);
-  const [populationChartProps, setPopulationChartProps] = useState<
-    PopulationChartProps | undefined
+  const [populationPlotPoints, setPopulationPlotPoints] = useState<
+    CategoryPopulationPlotPoints | undefined
   >(undefined);
+  const [selectedCategory, setSelectedCategory] =
+    useState<PopulationCategory>("総人口");
+  const [pendingSelectedCategory, setPendingSelectedCategory] =
+    useState<PopulationCategory | null>(null);
+
+  useEffect(() => {
+    if (pendingSelectedCategory !== null) {
+      setSelectedCategory(pendingSelectedCategory);
+      setPendingSelectedCategory(null);
+    }
+  }, [pendingSelectedCategory]);
 
   return (
     <>
@@ -34,7 +54,10 @@ const App = () => {
             const populationController = new PopulationController();
             const populationCompositionPerYearList: {
               prefName: string;
-              populationCompositionPerYear: PopulationCompositionPerYearValue[];
+              totalPopulation: PopulationCompositionPerYearValue[];
+              youngPopulation: PopulationCompositionPerYearValue[];
+              productiveAgePopulation: PopulationCompositionPerYearValue[];
+              elderlyPopulation: PopulationCompositionPerYearValue[];
             }[] = [];
 
             for (const prefecture of prefectures) {
@@ -44,7 +67,10 @@ const App = () => {
                 );
               populationCompositionPerYearList.push({
                 prefName: prefecture.prefName,
-                populationCompositionPerYear: population.totalPopulation,
+                totalPopulation: population.totalPopulation,
+                youngPopulation: population.youngPopulation,
+                productiveAgePopulation: population.productiveAgePopulation,
+                elderlyPopulation: population.elderlyPopulation,
               });
             }
 
@@ -52,33 +78,69 @@ const App = () => {
               return;
             }
 
-            const populationPlotPoints: PopulationPlotPoint[] = [];
+            const totalPopulationPlotPoints: PopulationPlotPoint[] = [];
+            const youngPopulationPlotPoints: PopulationPlotPoint[] = [];
+            const productiveAgePopulationPlotPoints: PopulationPlotPoint[] = [];
+            const elderlyPopulationPlotPoints: PopulationPlotPoint[] = [];
 
             for (const index of Array(
-              populationCompositionPerYearList[0].populationCompositionPerYear
-                .length,
+              populationCompositionPerYearList[0].totalPopulation.length,
             ).keys()) {
-              const populationPlotPoint: PopulationPlotPoint = {
-                year: populationCompositionPerYearList[0]
-                  .populationCompositionPerYear[index].year,
+              const totalPopulationPlotPoint: PopulationPlotPoint = {
+                year: populationCompositionPerYearList[0].totalPopulation[index]
+                  .year,
+              };
+              const youngPopulationPlotPoint = { ...totalPopulationPlotPoint };
+              const productiveAgePopulationPlotPoint = {
+                ...totalPopulationPlotPoint,
+              };
+              const elderlyPopulationPlotPoint = {
+                ...totalPopulationPlotPoint,
               };
               for (const {
                 prefName,
-                populationCompositionPerYear,
+                totalPopulation,
+                youngPopulation,
+                productiveAgePopulation,
+                elderlyPopulation,
               } of populationCompositionPerYearList) {
-                populationPlotPoint[prefName] =
-                  populationCompositionPerYear[index].value;
+                totalPopulationPlotPoint[prefName] =
+                  totalPopulation[index].value;
+                youngPopulationPlotPoint[prefName] =
+                  youngPopulation[index].value;
+                productiveAgePopulationPlotPoint[prefName] =
+                  productiveAgePopulation[index].value;
+                elderlyPopulationPlotPoint[prefName] =
+                  elderlyPopulation[index].value;
               }
-              populationPlotPoints.push(populationPlotPoint);
+              totalPopulationPlotPoints.push(totalPopulationPlotPoint);
+              youngPopulationPlotPoints.push(youngPopulationPlotPoint);
+              productiveAgePopulationPlotPoints.push(
+                productiveAgePopulationPlotPoint,
+              );
+              elderlyPopulationPlotPoints.push(elderlyPopulationPlotPoint);
             }
-            setPopulationChartProps({
-              populationPlotPoints,
+            setPopulationPlotPoints({
+              totalPopulationPlotPoints,
+              youngPopulationPlotPoints,
+              productiveAgePopulationPlotPoints,
+              elderlyPopulationPlotPoints,
             });
           }, [])}
         />
       </section>
       <section>
-        {populationChartProps && <PopulationChart {...populationChartProps} />}
+        <PopulationCategoryRadioButtonGroup
+          onSelectedCategoryChange={setPendingSelectedCategory}
+        />
+      </section>
+      <section>
+        {populationPlotPoints && (
+          <PopulationChart
+            selectedCategory={selectedCategory}
+            {...populationPlotPoints}
+          />
+        )}
       </section>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
