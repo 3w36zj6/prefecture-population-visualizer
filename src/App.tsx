@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import "./App.css";
 import reactLogo from "./assets/react.svg";
 import PopulationCategoryRadioButtonGroup from "./components/organisms/PopulationCategoryRadioButtonGroup";
@@ -27,6 +27,15 @@ const App = () => {
   >(undefined);
   const [selectedCategory, setSelectedCategory] =
     useState<PopulationCategory>("総人口");
+  const [pendingSelectedCategory, setPendingSelectedCategory] =
+    useState<PopulationCategory | null>(null);
+
+  useEffect(() => {
+    if (pendingSelectedCategory !== null) {
+      setSelectedCategory(pendingSelectedCategory);
+      setPendingSelectedCategory(null);
+    }
+  }, [pendingSelectedCategory]);
 
   return (
     <>
@@ -122,9 +131,7 @@ const App = () => {
       </section>
       <section>
         <PopulationCategoryRadioButtonGroup
-          onSelectedCategoryChange={useCallback((selectedCategory) => {
-            setSelectedCategory(selectedCategory);
-          }, [])}
+          onSelectedCategoryChange={setPendingSelectedCategory}
         />
       </section>
       <section>
