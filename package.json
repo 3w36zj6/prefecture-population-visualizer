@@ -13,6 +13,7 @@
     "preview": "vite preview",
     "test": "bun test",
     "storybook": "storybook dev -p 6006",
+    "test-storybook": "test-storybook",
     "build-storybook": "storybook build"
   },
   "dependencies": {
