@@ -12,6 +12,8 @@ import { PopulationController } from "./core/interface/PopulationController";
 import viteLogo from "/vite.svg";
 
 import { PopulationCategory } from "./core/domain/models/Population";
+import { Prefecture } from "./core/domain/models/Prefecture";
+import { PrefectureController } from "./core/interface/PrefectureController";
 
 interface CategoryPopulationPlotPoints {
   totalPopulationPlotPoints: PopulationPlotPoint[];
@@ -22,6 +24,10 @@ interface CategoryPopulationPlotPoints {
 
 const App = () => {
   const [count, setCount] = useState(0);
+  const [prefectures, setPrefectures] = useState<Prefecture[]>([]);
+  const [errorMessage, setErrorMessage] = useState<string | undefined>(
+    undefined,
+  );
   const [populationPlotPoints, setPopulationPlotPoints] = useState<
     CategoryPopulationPlotPoints | undefined
   >(undefined);
@@ -29,6 +35,22 @@ const App = () => {
     useState<PopulationCategory>("総人口");
   const [pendingSelectedCategory, setPendingSelectedCategory] =
     useState<PopulationCategory | null>(null);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const controller = new PrefectureController();
+        const prefectures = await controller.getPrefectures();
+        setPrefectures(prefectures);
+      } catch (e) {
+        if (e instanceof Error) {
+          setErrorMessage(e.message);
+          // eslint-disable-next-line no-console -- 意図的な標準エラー出力
+          console.error(e);
+        }
+      }
+    })();
+  }, []);
 
   useEffect(() => {
     if (pendingSelectedCategory !== null) {
@@ -48,8 +70,17 @@ const App = () => {
         </a>
       </div>
       <h1>Vite + React</h1>
+      {errorMessage && (
+        <section>
+          <div>
+            <p>都道府県一覧の取得に失敗しました。</p>
+            <p>{errorMessage}</p>
+          </div>
+        </section>
+      )}
       <section>
         <PrefectureCheckBoxGroup
+          prefectures={prefectures}
           onSelectedPrefecturesChange={useCallback(async (prefectures) => {
             const populationController = new PopulationController();
             const populationCompositionPerYearList: {

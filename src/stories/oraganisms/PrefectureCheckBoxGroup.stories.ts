@@ -26,6 +26,20 @@ type Story = StoryObj<typeof meta>;
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Primary: Story = {
   args: {
+    prefectures: [
+      {
+        prefCode: 1,
+        prefName: "北海道",
+      },
+      {
+        prefCode: 2,
+        prefName: "青森県",
+      },
+      {
+        prefCode: 3,
+        prefName: "岩手県",
+      },
+    ],
     onSelectedPrefecturesChange: fn(),
   },
 };

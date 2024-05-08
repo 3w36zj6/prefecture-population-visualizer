@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Prefecture } from "../../core/domain/models/Prefecture";
-import { PrefectureController } from "../../core/interface/PrefectureController";
 import Title from "../atoms/Title";
 import { CheckBoxGroup } from "../molecules/CheckBoxGroup";
 
 interface PrefectureCheckBoxProps {
+  prefectures: Prefecture[];
   onSelectedPrefecturesChange: (selectedPrefectures: Prefecture[]) => void;
 }
 
@@ -17,12 +17,12 @@ interface PrefectureCheckBox {
 }
 
 export const PrefectureCheckBoxGroup: React.FC<PrefectureCheckBoxProps> = ({
+  prefectures,
   onSelectedPrefecturesChange,
 }) => {
   const [prefectureCheckBoxes, setPrefectureCheckBoxes] = useState<
     PrefectureCheckBox[]
   >([]);
-  const [error, setError] = useState<string | null>(null);
 
   const handleCheckBoxChange = useCallback(
     (prefecture: Prefecture) => {
@@ -41,41 +41,22 @@ export const PrefectureCheckBoxGroup: React.FC<PrefectureCheckBoxProps> = ({
   );
 
   useEffect(() => {
-    (async () => {
-      try {
-        const controller = new PrefectureController();
-        const prefectures = await controller.getPrefectures();
-
-        setPrefectureCheckBoxes(
-          prefectures.map((prefecture) => ({
-            prefCode: prefecture.prefCode,
-            prefName: prefecture.prefName,
-            label: prefecture.prefName,
-            checked: false,
-            onChange: () => handleCheckBoxChange(prefecture),
-          })),
-        );
-      } catch (e) {
-        if (e instanceof Error) {
-          setError(e.message);
-          // eslint-disable-next-line no-console -- 意図的な標準エラー出力
-          console.error(e);
-        }
-      }
-    })();
-  }, [handleCheckBoxChange]);
+    setPrefectureCheckBoxes(
+      prefectures.map((prefecture) => ({
+        prefCode: prefecture.prefCode,
+        prefName: prefecture.prefName,
+        label: prefecture.prefName,
+        checked: false,
+        onChange: () => handleCheckBoxChange(prefecture),
+      })),
+    );
+  }, [handleCheckBoxChange, prefectures]);
 
   return (
     <fieldset>
       <legend>
         <Title text="都道府県" level="h2" />
       </legend>
-      {error && (
-        <div>
-          <p>都道府県一覧の取得に失敗しました。</p>
-          <p>{error}</p>
-        </div>
-      )}
       <CheckBoxGroup
         items={prefectureCheckBoxes.map(
           /* eslint-disable-next-line @typescript-eslint/no-unused-vars -- CheckBoxGroupの引数のitemsに不要なプロパティを削除している */

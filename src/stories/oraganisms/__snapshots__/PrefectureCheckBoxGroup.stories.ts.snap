@@ -8,6 +8,18 @@ exports[`organisms/PrefectureCheckBoxGroup Primary smoke-test 1`] = `
     </h2>
   </legend>
   <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+    <label>
+      <input type="checkbox">
+      北海道
+    </label>
+    <label>
+      <input type="checkbox">
+      青森県
+    </label>
+    <label>
+      <input type="checkbox">
+      岩手県
+    </label>
   </div>
 </fieldset>
 `;
