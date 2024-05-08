@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`atoms/CheckBox CheckedCheckbox smoke-test 1`] = `
+<label>
+  <input type="checkbox"
+         checked
+  >
+  CheckBox
+</label>
+`;
+
+exports[`atoms/CheckBox UncheckedCheckbox smoke-test 1`] = `
+<label>
+  <input type="checkbox">
+  CheckBox
+</label>
+`;

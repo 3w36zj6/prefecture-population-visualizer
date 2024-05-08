@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`organisms/PopulationCategoryRadioButtonGroup Primary smoke-test 1`] = `
+<fieldset>
+  <legend>
+    <h2>
+      人口カテゴリ
+    </h2>
+  </legend>
+  <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+    <label>
+      <input type="radio"
+             name="populationCategory"
+             value="総人口"
+             checked
+      >
+      総人口
+    </label>
+    <label>
+      <input type="radio"
+             name="populationCategory"
+             value="年少人口"
+      >
+      年少人口
+    </label>
+    <label>
+      <input type="radio"
+             name="populationCategory"
+             value="生産年齢人口"
+      >
+      生産年齢人口
+    </label>
+    <label>
+      <input type="radio"
+             name="populationCategory"
+             value="老年人口"
+      >
+      老年人口
+    </label>
+  </div>
+</fieldset>
+`;

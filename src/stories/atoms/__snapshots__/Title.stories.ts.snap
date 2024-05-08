@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`atoms/Title Level1Title smoke-test 1`] = `
+<h1>
+  Title
+</h1>
+`;
+
+exports[`atoms/Title Level2Title smoke-test 1`] = `
+<h2>
+  Title
+</h2>
+`;
+
+exports[`atoms/Title Level3Title smoke-test 1`] = `
+<h3>
+  Title
+</h3>
+`;
+
+exports[`atoms/Title Level4Title smoke-test 1`] = `
+<h4>
+  Title
+</h4>
+`;
+
+exports[`atoms/Title Level5Title smoke-test 1`] = `
+<h5>
+  Title
+</h5>
+`;
+
+exports[`atoms/Title Level6Title smoke-test 1`] = `
+<h6>
+  Title
+</h6>
+`;

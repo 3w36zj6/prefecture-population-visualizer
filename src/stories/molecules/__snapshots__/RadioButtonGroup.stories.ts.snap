@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`molecules/RadioButtonGroup Primary smoke-test 1`] = `
+<div style="display: flex; flex-wrap: wrap; gap: 10px;">
+  <label>
+    <input type="radio"
+           name
+           value
+    >
+    RadioButton
+  </label>
+  <label>
+    <input type="radio"
+           name
+           value
+           checked
+    >
+    RadioButton
+  </label>
+</div>
+`;

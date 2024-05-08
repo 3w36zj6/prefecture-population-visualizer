@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`atoms/RadioButton CheckedRadioButton smoke-test 1`] = `
+<label>
+  <input type="radio"
+         name
+         value
+         checked
+  >
+  RadioButton
+</label>
+`;
+
+exports[`atoms/RadioButton UncheckedRadioButton smoke-test 1`] = `
+<label>
+  <input type="radio"
+         name
+         value
+  >
+  RadioButton
+</label>
+`;
