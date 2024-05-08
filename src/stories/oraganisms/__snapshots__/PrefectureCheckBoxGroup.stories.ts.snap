@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`organisms/PrefectureCheckBoxGroup Primary smoke-test 1`] = `
+<fieldset>
+  <legend>
+    <h2>
+      都道府県
+    </h2>
+  </legend>
+  <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+  </div>
+</fieldset>
+`;

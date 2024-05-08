@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`molecules/CheckBoxGroup Primary smoke-test 1`] = `
+<div style="display: flex; flex-wrap: wrap; gap: 10px;">
+  <label>
+    <input type="checkbox">
+    CheckBox
+  </label>
+  <label>
+    <input type="checkbox"
+           checked
+    >
+    CheckBox
+  </label>
+</div>
+`;
