@@ -33,6 +33,7 @@
     "eslint-plugin-react-refresh": "^0.4.6",
     "lefthook": "1.6.10",
     "prettier": "3.2.5",
+    "prettier-plugin-toml": "^2.0.1",
     "typescript": "^5.2.2",
     "vite": "^5.2.0"
   }
