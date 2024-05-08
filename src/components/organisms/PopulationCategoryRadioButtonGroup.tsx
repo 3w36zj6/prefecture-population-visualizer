@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { PopulationCategory } from "../../domain/models/Population";
+import { PopulationCategory } from "../../core/domain/models/Population";
 import { RadioButtonProps } from "../atoms/RadioButton";
 import Title from "../atoms/Title";
 import { RadioButtonGroup } from "../molecules/RadioButtonGroup";
