@@ -1,4 +1,4 @@
-import { getURLParams } from "../../helpers/getURLParams";
+import { getURLParams } from "../../../helpers/getURLParams";
 
 export const fetchResasAPI = async (
   endpoint: string,

@@ -9,7 +9,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { PopulationCategory } from "../../domain/models/Population";
+import { PopulationCategory } from "../../core/domain/models/Population";
 import { stringToRgbHex } from "../../helpers/stringToRgbHex";
 
 export interface PopulationChartProps {

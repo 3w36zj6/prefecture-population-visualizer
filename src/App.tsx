@@ -7,11 +7,11 @@ import {
   PopulationPlotPoint,
 } from "./components/organisms/PopulationChart";
 import { PrefectureCheckBoxGroup } from "./components/organisms/PrefectureCheckBoxGroup";
-import { PopulationCompositionPerYearValue } from "./domain/models/Population";
-import { PopulationController } from "./interface/PopulationController";
+import { PopulationCompositionPerYearValue } from "./core/domain/models/Population";
+import { PopulationController } from "./core/interface/PopulationController";
 import viteLogo from "/vite.svg";
 
-import { PopulationCategory } from "./domain/models/Population";
+import { PopulationCategory } from "./core/domain/models/Population";
 
 interface CategoryPopulationPlotPoints {
   totalPopulationPlotPoints: PopulationPlotPoint[];

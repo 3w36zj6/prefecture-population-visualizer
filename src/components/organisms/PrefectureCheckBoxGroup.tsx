@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Prefecture } from "../../domain/models/Prefecture";
-import { PrefectureController } from "../../interface/PrefectureController";
+import { Prefecture } from "../../core/domain/models/Prefecture";
+import { PrefectureController } from "../../core/interface/PrefectureController";
 import Title from "../atoms/Title";
 import { CheckBoxGroup } from "../molecules/CheckBoxGroup";
 
