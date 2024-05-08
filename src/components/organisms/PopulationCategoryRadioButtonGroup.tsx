@@ -32,12 +32,10 @@ export const PopulationCategoryRadioButtonGroup: React.FC<
             ? { ...item, checked: !item.checked }
             : { ...item, checked: false },
         );
-        const checkedItems = updatedItems.filter((item) => item.checked);
-        onSelectedCategoryChange(checkedItems[0].label);
         return updatedItems;
       });
     },
-    [onSelectedCategoryChange],
+    [],
   );
 
   useEffect(() => {
@@ -51,6 +49,14 @@ export const PopulationCategoryRadioButtonGroup: React.FC<
       })),
     );
   }, [handleRadioButtonChange]);
+
+  useEffect(() => {
+    const checkedItems = populationCategoryRadioButtons.filter(
+      (item) => item.checked,
+    );
+    if (checkedItems.length > 0)
+      onSelectedCategoryChange(checkedItems[0].label);
+  }, [onSelectedCategoryChange, populationCategoryRadioButtons]);
 
   return (
     <fieldset>
