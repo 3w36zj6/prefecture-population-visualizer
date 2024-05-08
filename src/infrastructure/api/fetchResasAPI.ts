@@ -9,7 +9,9 @@ export const fetchResasAPI = async (
     import.meta.env.VITE_RESAS_API_KEY ||
     getURLParams(window.location.href).resas_api_key;
   if (!API_KEY) {
-    throw new Error("RESAS_API_KEY is not defined");
+    throw new Error(
+      "'RESAS_API_KEY' is not defined. Please set the environment variable 'VITE_RESAS_API_KEY' during the build process or the URL parameter 'resas_api_key'.",
+    );
   }
 
   const options: RequestInit = {
@@ -28,6 +30,21 @@ export const fetchResasAPI = async (
     `https://opendata.resas-portal.go.jp/${endpoint}`,
     options,
   );
-  const data = await response.json();
-  return data.result;
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch with status code ${response.status}.`);
+  }
+
+  let responseJson;
+  try {
+    responseJson = await response.json();
+  } catch (error) {
+    throw new Error("Failed to parse response as JSON.");
+  }
+
+  if (!("result" in responseJson)) {
+    throw new Error("Response does not have 'result' field.");
+  }
+
+  return responseJson.result;
 };
