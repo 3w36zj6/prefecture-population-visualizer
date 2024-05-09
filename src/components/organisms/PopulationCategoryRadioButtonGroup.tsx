@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
+import { Reset } from "styled-reset";
 import { PopulationCategory } from "../../core/domain/models/Population";
 import { RadioButtonProps } from "../atoms/RadioButton";
 import Title from "../atoms/Title";
@@ -67,6 +68,7 @@ export const PopulationCategoryRadioButtonGroup: React.FC<
 
   return (
     <StyledFieldset>
+      <Reset />
       <legend>
         <Title text="人口カテゴリ" level="h2" />
       </legend>

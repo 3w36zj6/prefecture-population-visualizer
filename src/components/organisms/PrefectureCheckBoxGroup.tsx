@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
+import { Reset } from "styled-reset";
 import { Prefecture } from "../../core/domain/models/Prefecture";
 import Title from "../atoms/Title";
 import { CheckBoxGroup } from "../molecules/CheckBoxGroup";
@@ -61,6 +62,7 @@ export const PrefectureCheckBoxGroup: React.FC<PrefectureCheckBoxProps> = ({
 
   return (
     <StyledFieldset>
+      <Reset />
       <legend>
         <Title text="都道府県" level="h2" />
       </legend>
