@@ -2,36 +2,60 @@
 
 exports[`atoms/Title Level1Title smoke-test 1`] = `
 <h1>
-  Title
+  <span level="h1"
+        class="sc-bgqQPU iIrSmx"
+  >
+    Title
+  </span>
 </h1>
 `;
 
 exports[`atoms/Title Level2Title smoke-test 1`] = `
 <h2>
-  Title
+  <span level="h2"
+        class="sc-bgqQPU eepGMU"
+  >
+    Title
+  </span>
 </h2>
 `;
 
 exports[`atoms/Title Level3Title smoke-test 1`] = `
 <h3>
-  Title
+  <span level="h3"
+        class="sc-bgqQPU kMdUEj"
+  >
+    Title
+  </span>
 </h3>
 `;
 
 exports[`atoms/Title Level4Title smoke-test 1`] = `
 <h4>
-  Title
+  <span level="h4"
+        class="sc-bgqQPU gnDnFe"
+  >
+    Title
+  </span>
 </h4>
 `;
 
 exports[`atoms/Title Level5Title smoke-test 1`] = `
 <h5>
-  Title
+  <span level="h5"
+        class="sc-bgqQPU gkOfuJ"
+  >
+    Title
+  </span>
 </h5>
 `;
 
 exports[`atoms/Title Level6Title smoke-test 1`] = `
 <h6>
-  Title
+  <span level="h6"
+        class="sc-bgqQPU fRTBJW"
+  >
+    Title
+  </span>
 </h6>
 `;

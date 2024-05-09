@@ -1,4 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
+import styled from "styled-components";
+import { Reset } from "styled-reset";
 import { PopulationCategory } from "../../core/domain/models/Population";
 import { RadioButtonProps } from "../atoms/RadioButton";
 import Title from "../atoms/Title";
@@ -18,6 +20,12 @@ const categories: PopulationCategory[] = [
   "生産年齢人口",
   "老年人口",
 ];
+
+const StyledFieldset = styled.fieldset`
+  & > * {
+    margin: 0.5em;
+  }
+`;
 
 export const PopulationCategoryRadioButtonGroup: React.FC<
   PopulationCategoryRadioButtonProps
@@ -59,14 +67,15 @@ export const PopulationCategoryRadioButtonGroup: React.FC<
   }, [onSelectedCategoryChange, populationCategoryRadioButtons]);
 
   return (
-    <fieldset>
+    <StyledFieldset>
+      <Reset />
       <legend>
         <Title text="人口カテゴリ" level="h2" />
       </legend>
       <RadioButtonGroup
         items={populationCategoryRadioButtons as RadioButtonProps[]}
       />
-    </fieldset>
+    </StyledFieldset>
   );
 };
 

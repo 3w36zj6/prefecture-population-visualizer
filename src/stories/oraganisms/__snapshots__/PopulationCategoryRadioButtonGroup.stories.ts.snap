@@ -1,10 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`organisms/PopulationCategoryRadioButtonGroup Primary smoke-test 1`] = `
-<fieldset>
+<fieldset class="sc-gTRrcP eRqeeM">
   <legend>
     <h2>
-      人口カテゴリ
+      <span level="h2"
+            class="sc-bgqQPU eepGMU"
+      >
+        人口カテゴリ
+      </span>
     </h2>
   </legend>
   <div style="display: flex; flex-wrap: wrap; gap: 10px;">

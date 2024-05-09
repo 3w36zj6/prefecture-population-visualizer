@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`atoms/ErrorAlert ErrorAlertStory smoke-test 1`] = `
+<div class="sc-bgqQPU hsCITk">
+  <h2 class="sc-gTRrcP eoEsPm">
+    Error
+  </h2>
+  This is an error message.
+</div>
+`;

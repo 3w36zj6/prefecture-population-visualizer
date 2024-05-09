@@ -58,10 +58,10 @@ export const PopulationChart: React.FC<PopulationChartProps> = ({
         <LineChart
           data={populationPlotPoints}
           margin={{
-            top: 20,
-            right: 40,
-            left: 40,
-            bottom: 20,
+            top: 10,
+            right: 10,
+            left: 10,
+            bottom: 10,
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
