@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
+import styled from "styled-components";
 import { Prefecture } from "../../core/domain/models/Prefecture";
 import Title from "../atoms/Title";
 import { CheckBoxGroup } from "../molecules/CheckBoxGroup";
@@ -15,6 +16,12 @@ interface PrefectureCheckBox {
   checked: boolean;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
+
+const StyledFieldset = styled.fieldset`
+  & > * {
+    margin: 0.5em;
+  }
+`;
 
 export const PrefectureCheckBoxGroup: React.FC<PrefectureCheckBoxProps> = ({
   prefectures,
@@ -53,7 +60,7 @@ export const PrefectureCheckBoxGroup: React.FC<PrefectureCheckBoxProps> = ({
   }, [handleCheckBoxChange, prefectures]);
 
   return (
-    <fieldset>
+    <StyledFieldset>
       <legend>
         <Title text="都道府県" level="h2" />
       </legend>
@@ -63,7 +70,7 @@ export const PrefectureCheckBoxGroup: React.FC<PrefectureCheckBoxProps> = ({
           ({ prefCode, prefName, ...item }) => item,
         )}
       />
-    </fieldset>
+    </StyledFieldset>
   );
 };
 
