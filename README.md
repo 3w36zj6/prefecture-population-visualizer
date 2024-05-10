@@ -102,7 +102,7 @@ bun run test
 以下のコマンドでPlaywrightの依存関係をインストールします。
 
 ```sh
-bun playwright install
+bun playwright install --with-deps
 ```
 
 以下のコマンドでPlaywrightによるE2EテストとVRTテストを行います。実行前に開発用サーバーが5173ポートで起動している必要があります。
