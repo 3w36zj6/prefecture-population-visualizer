@@ -97,6 +97,20 @@ bun run build
 bun run test
 ```
 
+### Playwright
+
+以下のコマンドでPlaywrightの依存関係をインストールします。
+
+```sh
+bun playwright install
+```
+
+以下のコマンドでPlaywrightによるE2EテストとVRTテストを行います。実行前に開発用サーバーが5173ポートで起動している必要があります。
+
+```sh
+bun run test-playwright
+```
+
 ### Storybook
 
 以下のコマンドでStorybookを起動します。
