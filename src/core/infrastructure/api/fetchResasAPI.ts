@@ -1,5 +1,8 @@
 import { getURLParams } from "../../../helpers/getURLParams";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const cache: { [key: string]: any } = {};
+
 export const fetchResasAPI = async (
   endpoint: string,
   method: string = "GET",
@@ -12,6 +15,10 @@ export const fetchResasAPI = async (
     throw new Error(
       "'RESAS_API_KEY' is not defined. Please set the environment variable 'VITE_RESAS_API_KEY' during the build process or the URL parameter 'resas_api_key'.",
     );
+  }
+
+  if (method === "GET" && cache[endpoint]) {
+    return cache[endpoint];
   }
 
   const options: RequestInit = {
@@ -44,6 +51,10 @@ export const fetchResasAPI = async (
 
   if (!("result" in responseJson)) {
     throw new Error("Response does not have 'result' field.");
+  }
+
+  if (method === "GET") {
+    cache[endpoint] = responseJson.result;
   }
 
   return responseJson.result;
