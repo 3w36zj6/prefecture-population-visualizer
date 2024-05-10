@@ -14,7 +14,8 @@
     "test": "bun test",
     "storybook": "storybook dev -p 6006",
     "test-storybook": "test-storybook",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "test-playwright": "playwright test"
   },
   "dependencies": {
     "js-md5": "^0.8.3",
