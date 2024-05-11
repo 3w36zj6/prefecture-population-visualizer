@@ -99,6 +99,9 @@ bun run test
 
 ### Playwright
 
+> [!NOTE]
+> 動作が不安定なため、CI上では実行していません。
+
 以下のコマンドでPlaywrightの依存関係をインストールします。
 
 ```sh
