@@ -1,5 +1,8 @@
 import { beforeEach, describe, expect, Mock, spyOn, test } from "bun:test";
 import { fetchResasAPI } from "./fetchResasAPI";
+Object.defineProperty(import.meta.env, "VITE_RESAS_API_KEY", {
+  value: undefined,
+});
 
 describe("fetchResasAPI", () => {
   let mockFetch: Mock<
@@ -12,7 +15,7 @@ describe("fetchResasAPI", () => {
     mockFetch = spyOn(global, "fetch");
   });
 
-  test("環境変数が未定義のときにエラーを返す", async () => {
+  test("URLパラメータが未定義のときにエラーを返す", async () => {
     window.location.href = "https://example.com/";
     await expect(fetchResasAPI("api/v1/dummy")).rejects.toThrow(
       "'RESAS_API_KEY' is not defined. Please set the environment variable 'VITE_RESAS_API_KEY' during the build process or the URL parameter 'resas_api_key'.",
