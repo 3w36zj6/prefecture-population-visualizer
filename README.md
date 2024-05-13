@@ -46,7 +46,7 @@ bun run dev
 本リポジトリではGit hooksの管理に[Lefthook]を使用しています。以下のコマンドで`lefthook.yml`に定義されたGit hooksのセットアップを行います。
 
 ```sh
-bun install lefthook
+bun lefthook install
 ```
 
 ## Continuous Integration
